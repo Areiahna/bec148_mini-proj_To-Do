@@ -28,10 +28,11 @@ def main(list):
             view_list()
         elif (ans == "3"):
             pass
-            # complete_task()
+            complete_task()
         elif (ans == "4"):
             delete_task()
         elif (ans == "5") :
+            # Quitting the application.
             print("Thanks for using my app!")
             break
         else:
@@ -63,24 +64,27 @@ def view_list ():
 
 # Marking a task as complete.
 def complete_task ():
-    ans = input(f"Which task would you like to mark as complete?: ")
+    mark_it = " [X]"
+    task = input("Which task would you like to mark as complete?: ").lower()
     while True:
-        try:
-            for task in range(len(todo_list)):
-                if todo_list[task].lower() == ans.lower():
-                    print("MATCH")
-                    # " [X]".join(todo_list[task])
-                    # break
-
+        try: 
+            for x in range(len(todo_list)):
+                if task == todo_list[x].lower():
+                    todo_list[x] = task + mark_it
+                
         except ValueError:
-            print(f"It looks like '{ans}' is not on your list\n")
-            break        
+            print(f"It looks like you don't have {task} on your list\n")
+            break
+        else:
+            print(f"COMPLETED\n")
+            break
 
         finally:
             view_list()
 
 # Deleting a task.
 def delete_task ():
+
     task = input("Which task would you like to REMOVE?: ")
     while True:
         try:
