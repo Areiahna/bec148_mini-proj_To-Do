@@ -49,7 +49,7 @@ def add_task ():
         y - yes
         n - no
 
-        ''')
+        ''').lower()
         if (ans == "y"):
             continue
         else:
@@ -85,10 +85,12 @@ def complete_task ():
 # Deleting a task.
 def delete_task ():
 
-    task = input("Which task would you like to REMOVE?: ")
+    task = input("Which task would you like to REMOVE?: ").lower()
     while True:
         try:
-            todo_list.remove(task)
+            for x in todo_list:
+                if x.lower() == task:
+                    todo_list.remove(x)
         except ValueError:
             print(f"It looks like '{task}' is not on your list\n")
             break
@@ -97,8 +99,6 @@ def delete_task ():
             break
         finally:
             view_list()
-
-
 
 main(todo_list)
 
